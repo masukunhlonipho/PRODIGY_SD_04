@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="height: 100%;">
+    <div class="text-center">
+        <h1 class="mb-4">Scrape Products</h1>
+        <button id="startScrape" class="btn btn-warning btn-lg">Scrape Products</button>
+        <div id="spinner" class="spinner-border text-warning" role="status" style="display: none;">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div id="message"></div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#startScrape').click(function(e) {
+        e.preventDefault();
+        var button = $(this);
+        button.prop('disabled', true);
+        $('#spinner').show();
+        $('#message').text('Scraping in progress...');
+        
+        $.ajax({
+            type: 'POST',
+            url: '{% url 'scrape-products' %}',
+            headers: {'X-CSRFToken': '{{ csrf_token }}'},
+            success: function(response) {
+                if (response.status === 'success') {
+                    window.location.href = '{% url 'scrape-complete' %}';
+                } else {
+                    $('#message').text('An error occurred during scraping: ' + response.message);
+                }
+            },
+            error: function(xhr, status, error) {
+                $('#message').text('Error: ' + error);
+            },
+            complete: function() {
+                button.prop('disabled', false);
+                $('#spinner').hide();
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

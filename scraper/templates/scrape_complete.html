@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="d-flex justify-content-center align-items-center" style="height: 100%;">
+        <div class="text-center">
+            <h1 class="mb-4">Scraping Completed Successfully!</h1>
+            <p>Products have been scraped and added to the database.</p>
+            <div>
+                <a href="{% url 'admin:index' %}" class="btn btn-info btn-lg me-2">Go to Admin Dashboard</a>
+                <a href="{% url 'admin:scraper_product_changelist' %}" class="btn btn-secondary btn-lg">View Products</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

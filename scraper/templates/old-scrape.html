@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="d-flex justify-content-center align-items-center" style="height: 100%;">
+        <div class="text-center">
+            <h1 class="mb-4">Scrape Products</h1>
+            <form action="{% url 'scrape-products' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-warning btn-lg">Scrape Products</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -5,6 +5,15 @@ SECRET_KEY = 'django-insecure-w_jc0x5l@b854uso*9(5z^=y29s-q@4=sp(wbt24jsz$c6is4i
 DEBUG = True
 ALLOWED_HOSTS = []
 
+ADMIN_SITE_HEADER = "Takealot Scraper Admin"
+ADMIN_TITLE = "Takealot Scraper Site Admin"
+ADMIN_INDEX_TITLE = "Welcome to the Takealot Scraper Admin"
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -30,7 +39,7 @@ ROOT_URLCONF = 'PRODIGY_SD_04.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # Optional: Add template directories
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

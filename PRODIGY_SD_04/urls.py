@@ -1,10 +1,10 @@
 from django.contrib import admin
 from django.urls import path
-from scraper.views import ScrapeProductsView, home  # Import the home view
-
+from scraper import views  # Import all views from scraper app
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('scrape/', ScrapeProductsView.as_view(), name='scrape-products'),
-    path('', home, name='home'),  # Map root path to the home view
+    path('scrape/', views.scrape_products, name='scrape-products'),  # Updated to function view
+    path('', views.home, name='home'),
+    path('scrape/complete/', views.scrape_complete, name='scrape-complete'),
 ]
