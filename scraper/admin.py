@@ -3,5 +3,6 @@ from .models import Product
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price', 'rating', 'url')  # Fields to show in the admin list view
-    search_fields = ('name', 'description')  # Enable search by name and description
+    list_display = ('name', 'price', 'rating', 'created_at')
+    search_fields = ('name', 'description')
+    list_filter = ('rating', 'created_at')
